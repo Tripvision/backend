@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /***
- * Spring Security 설젇을 위한 클래스 입니다.
+ * Spring Security 설정을 위한 클래스 입니다.
  * @since 1.0.0
  */
 @Configuration
@@ -18,20 +18,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers("/h2-console/**");
-	}
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// 인가 정책 설정
 		http
-			.authorizeRequests() // 요청에 대한 보안 검사 실행
-			.anyRequest().authenticated(); // 어떠한 요청에도 인증을 받도록 설정
+			.authorizeRequests()
+			.antMatchers("/", "/**").access("permitAll")
+			.antMatchers("/h2-console/**").permitAll() // 추가
+			.and()
+			.csrf() // 추가
+			.ignoringAntMatchers("/h2-console/**").disable() // 추가
+			.httpBasic();
+	}
 
-		// 인증 정책 설정
-		http
-			.formLogin(); // formLogin인증 방식을 사용하도록 설정
+	// Security 무시하기
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/h2-console/**");
 	}
 
 }
