@@ -1,0 +1,18 @@
+package com.example.tripvision.member.dao;
+
+import java.util.List;
+
+import com.example.tripvision.counter.dto.CountRequest;
+
+public class MemberRepositoryImpl implements MemberRepositoryCustom{
+	@Override
+	public List<CountRequest> countDependices(List<CountRequest> countList) {
+
+		return null;
+	}
+
+
+
+
+
+}

@@ -18,6 +18,9 @@ public enum ErrorCode {
 	LOGIN_INPUT_INVALID(400, "M002", "Login input is invalid"),
 	USER_NOT_FOUND(404, "U001", "해당 유저가 존재하지 않습니다."),
 
+	// Youtube
+	YOUTUBE_NOT_FOUND(404,"Y001", "해당 유투브 게시물을 찾을 수 없습니다."),
+
 	// Journal
 	JOURNAL_NOT_FOUND(404, "J001", "해당 다이어리가 존재하지 않습니다."),
 
