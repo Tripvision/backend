@@ -25,13 +25,13 @@ public class MemberSearchServiceImpl implements MemberSearchService {
 		Optional<List<Member>> memberList = Optional.of(memberRepository.findAll());
 		return memberList.orElseThrow(() -> new MemberNotFoundException("This member is not Found"));
 	}
-
 	@Transactional
 	@Override
 	public Member getMember(Long id) {
 		Optional<Member> getMember = memberRepository.findById(id);
 		return getMember.orElseThrow(() -> new MemberNotFoundException("This member is not Found"));
 	}
+
 }
 
 
