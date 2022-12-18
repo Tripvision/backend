@@ -107,6 +107,11 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
 		return setting;
 	}
 
+	@Override
+	public void bulkUpdateProjectBudget(Budget budget) {
+
+	}
+
 	private BooleanExpression eqTeamId(Long teamId) {
 		return teamId != null ? project.team.id.eq(teamId) : null;
 	}

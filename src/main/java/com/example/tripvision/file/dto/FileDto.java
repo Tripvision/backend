@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
+import com.example.tripvision.activity.TeamActivity;
 import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.budget.dto.BudgetDto;
 import com.example.tripvision.file.domain.File;
@@ -13,17 +14,13 @@ import com.example.tripvision.setting.domain.Setting;
 import com.example.tripvision.setting.dto.SettingDto;
 import com.example.tripvision.team.domain.Team;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-@Builder
+
 @Getter
-@NoArgsConstructor
+@Setter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-@AllArgsConstructor
 public class FileDto {
 
 	private Long id;
@@ -32,14 +29,38 @@ public class FileDto {
 	private String fileName;
 
 	@NotNull
-	private Integer filesize;
+	private Integer fileSize;
 
 	@NotNull
 	private String fileUploader;
 
-	private ProjectDto projectDto;
+//	private ProjectDto projectDto;
+	@NotNull
+	private Long projectId;
 
-	public File toEntity() {
+	@NotNull
+	private Long teamActivityId;
+
+	@Builder
+	private FileDto(Long id, String fileName, Integer fileSize, String fileUploader, Long projectId, Long teamActivityId) {
+		this.id = id;
+		this.fileName = fileName;
+		this.fileSize = fileSize;
+		this.fileUploader = fileUploader;
+		this.projectId = projectId;
+		this.teamActivityId = teamActivityId;
+	}
+
+	public FileDto(File file){
+		this.id = file.getId();
+		this.fileName = file.getFileName();
+		this.fileSize = file.getFileSize();
+		this.fileUploader = file.getFileUploader();
+		this.projectId = file.getProject().getId();
+		this.teamActivityId = file.getProject().getId();
+	}
+
+	public File toEntity(Project project, TeamActivity teamActivity) {
 		if (id == null) {
 			return File.builder()
 
@@ -47,9 +68,26 @@ public class FileDto {
 		} else {
 			return File.builder()
 				.id(id)
+				.fileName(fileName)
+				.fileSize(fileSize)
+				.fileUploader(fileUploader)
+				.project(project)
+				.teamActivity(teamActivity)
 				.build();
 		}
 
+	}
+
+	@Getter
+	@Setter
+	public static class FileAndProjectDto{
+
+		private ProjectDto projectDto;
+
+		@Builder
+		private FileAndProjectDto(ProjectDto projectDto){
+			this.projectDto = projectDto;
+		}
 	}
 
 }

@@ -64,18 +64,18 @@ public class FileController {
 		return new ResponseEntity<>(FileHelper.toDto(file),HttpStatus.OK);
 	}
 
-	@PostMapping("/files")
-	public ResponseEntity<FileDto> saveProject(@RequestBody FileDto fileDto) {
-		final File file = fileSearchService.saveFile(fileDto.toEntity());
-		return new ResponseEntity<>(FileHelper.toDto(file),HttpStatus.CREATED);
-	}
+//	@PostMapping("/files")
+//	public ResponseEntity<FileDto> saveProject(@RequestBody FileDto fileDto) {
+//		final File file = fileSearchService.saveFile(fileDto.toEntity());
+//		return new ResponseEntity<>(FileHelper.toDto(file),HttpStatus.CREATED);
+//	}
 
-	@PutMapping("/files")
-	public ResponseEntity<FileDto> updateProject(@RequestBody FileDto fileDto) {
-		log.info(fileDto.toString());
-		final File file = fileSearchService.updateFile(fileDto.toEntity());
-		return new ResponseEntity<>(FileHelper.toDto(file),HttpStatus.CREATED);
-	}
+//	@PutMapping("/files")
+//	public ResponseEntity<FileDto> updateProject(@RequestBody FileDto fileDto) {
+//		log.info(fileDto.toString());
+//		final File file = fileSearchService.updateFile(fileDto.toEntity());
+//		return new ResponseEntity<>(FileHelper.toDto(file),HttpStatus.CREATED);
+//	}
 
 	@DeleteMapping("/files/{id}")
 	public ResponseEntity deleteProject(@Valid @PathVariable("id")@Min(1) Long id) {

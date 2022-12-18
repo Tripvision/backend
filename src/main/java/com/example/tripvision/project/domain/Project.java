@@ -89,4 +89,15 @@ public class Project extends BaseTimeEntity {
 		this.setting = project.setting;
 		this.member = project.member;
 	}
+
+	// Budget delete에서 필요해 추가
+	public void updateBudget(Budget budget){
+		this.budget = budget;
+	}
+
+	//Budget save시에 OneToOne 관계에서 Budget 가지고 있는지 판단
+	public boolean hasBudget(){
+		if (this.budget!=null) return true;
+		return false;
+	}
 }

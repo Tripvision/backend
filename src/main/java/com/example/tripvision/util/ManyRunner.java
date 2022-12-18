@@ -59,7 +59,6 @@ public class ManyRunner implements CommandLineRunner {
 
 
 				project.setBudget(budget);
-				budget.saveMember(member);
 				projectRepository.save(project);
 				taskRepository.save(task);
 				fileRepository.save(file);

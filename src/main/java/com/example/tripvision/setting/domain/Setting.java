@@ -18,15 +18,10 @@ import javax.persistence.Table;
 import com.example.tripvision.project.domain.Project;
 import com.example.tripvision.team.domain.Team;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="setting")
 public class Setting {
@@ -41,6 +36,8 @@ public class Setting {
 	@Column(name = "SETTING_LOGO")
 	private String logoUrl;
 
+	@Column(name = "SETTING_TITLE")
+	private String title;
 	@Column(name = "SETTING_NAME")
 	private String name;
 
@@ -62,15 +59,30 @@ public class Setting {
 	@JoinColumn(name = "PROJECT_ID")
 	private Project project;
 
+	@Builder
+	private Setting(Long id, String logoUrl, String title, String name, String type, String description, LocalDate dueDate, String notifierType, Boolean status, Project project) {
+		this.id = id;
+		this.logoUrl = logoUrl;
+		this.title = title;
+		this.name = name;
+		this.type = type;
+		this.description = description;
+		this.dueDate = dueDate;
+		this.notifierType = notifierType;
+		this.status = status;
+		this.project = project;
+	}
+
 	public void update(Setting setting) {
 		this.id = setting.id;
 		this.logoUrl = setting.logoUrl;
+		this.title = setting.title;
 		this.dueDate = setting.dueDate;
 		this.status = setting.status;
 		this.notifierType = setting.notifierType;
 		this.name = setting.name;
 		this.type = setting.type;
 		this.description = setting.description;
-		this.project = project;
+		this.project = setting.project;
 	}
 }
