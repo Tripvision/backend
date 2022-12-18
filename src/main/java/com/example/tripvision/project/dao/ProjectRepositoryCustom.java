@@ -49,6 +49,9 @@ public interface ProjectRepositoryCustom {
 	 */
 	Setting projectSetting(Long projectId);
 
-
+	/**
+	 * 프로젝트의 Budget 를 Bulk 연산합니다.(연관관계 삭제)
+	 */
+	void bulkUpdateProjectBudget(Budget budget);
 
 }

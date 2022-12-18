@@ -1,1 +1,18 @@
-{"id":null,"dueDate":[2022,12,16,20,24,24,966497000],"usage":null,"notes":null,"value":null,"allow":null,"projectDto":{"id":1,"title":"My Project Title","dueDate":"2022-12-16","teamDto":null},"budget":null}
+{
+  "id": null,
+  "dueDate": [
+    2022,
+    12,
+    18,
+    18,
+    7,
+    4,
+    958576200
+  ],
+  "usage": null,
+  "notes": null,
+  "value": null,
+  "allow": null,
+  "projectId": null,
+  "memberId": null
+}

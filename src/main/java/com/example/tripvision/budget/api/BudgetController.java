@@ -58,26 +58,27 @@ public class BudgetController {
 	}
 
 	@GetMapping("/budgets/{id}")
-	public ResponseEntity<BudgetDto> findProject(@Valid @PathVariable("id") @Min(1) Long budgetId) {
+	public ResponseEntity<BudgetDto> findBudget(@Valid @PathVariable("id") @Min(1) Long budgetId) {
 		final Budget budget = budgetSearchService.findBudget(budgetId);
 		return new ResponseEntity<>(BudgetHelper.toDto(budget),HttpStatus.OK);
 	}
 
-	@PostMapping("budgets")
-	public ResponseEntity<BudgetDto> saveProject(@RequestBody BudgetDto budgetDto) {
+	@PostMapping("/budgets")
+	public ResponseEntity<BudgetDto> saveBudget(@RequestBody BudgetDto budgetDto) {
 		final Budget budget = budgetSearchService.saveBudget(budgetDto.toEntity());
 		return new ResponseEntity<>(BudgetHelper.toDto(budget),HttpStatus.CREATED);
 	}
 
-	@PutMapping("/budgets")
-	public ResponseEntity<BudgetDto> updateProject(@RequestBody BudgetDto budgetDto) {
+	@PutMapping("/budgets/{budgetId}")
+	public ResponseEntity<BudgetDto> updateBudget(@PathVariable Long budgetId,
+												   @RequestBody BudgetDto budgetDto) {
 		log.info(budgetDto.toString());
-		final Budget budget = budgetSearchService.updateBudget(budgetDto.toEntity());
+		final Budget budget = budgetSearchService.updateBudget(budgetId, budgetDto.toEntity());
 		return new ResponseEntity<>(BudgetHelper.toDto(budget),HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/budgets/{id}")
-	public ResponseEntity deleteProject(@Valid @PathVariable("id")@Min(1) Long id) {
+	public ResponseEntity deleteBudget(@Valid @PathVariable("id")@Min(1) Long id) {
 		budgetSearchService.deleteBudget(id);
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}

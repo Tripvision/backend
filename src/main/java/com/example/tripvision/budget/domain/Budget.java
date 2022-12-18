@@ -1,5 +1,6 @@
 package com.example.tripvision.budget.domain;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -21,15 +22,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "budget")
 public class Budget {
@@ -39,9 +35,11 @@ public class Budget {
 	@Column(name = "budget_id")
 	private Long id;
 
-
 	@OneToMany(mappedBy = "budget", fetch = FetchType.LAZY)
 	private Set<Notification> notification = new LinkedHashSet<>();
+
+	@Column(name = "DUE_DATE")
+	private LocalDateTime dueDate;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "BUDGET_CHARACTER")
@@ -59,26 +57,38 @@ public class Budget {
 	@OneToOne(mappedBy = "budget")
 	private Project project;
 
-	@ManyToOne
-	@JoinColumn(name = "MEMBER_ID")
-	private Member member;
+	//연관관계 수정
+//	@ManyToOne
+//	@JoinColumn(name = "MEMBER_ID")
+//	private Member member;
 
+	@Builder
+	private Budget(Long id, Set<Notification> notification, LocalDateTime dueDate, Usage usage, String notes, Integer value, Boolean allow, Project project) {
+		this.id = id;
+		this.notification = notification;
+		this.dueDate = dueDate;
+		this.usage = usage;
+		this.notes = notes;
+		this.value = value;
+		this.allow = allow;
+		this.project = project;
+	}
+
+	/*
+	변경 해야하는 필드만 update 메소드로 빼서 메소드 나누기
+	 */
 	public void update(Budget budget) {
 		this.allow = budget.allow;
 		this.notes = budget.notes;
 		this.value = budget.value;
-		this.notification = budget.notification;
+//		this.notification = budget.notification;
 		this.usage = budget.usage;
-		this.member = budget.member;
-		this.project = budget.getProject();
+		this.project = budget.project;
 	}
 
+	//삭제
 	public void saveProject(Project project) {
 		this.project = project;
-	}
-
-	public void saveMember(Member member) {
-		this.member = member;
 	}
 
 }

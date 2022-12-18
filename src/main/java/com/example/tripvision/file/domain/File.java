@@ -14,15 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "file")
 public class File extends BaseTimeEntity {
@@ -45,6 +40,7 @@ public class File extends BaseTimeEntity {
 	@Column(name = "FILE_NAME")
 	private String fileName;
 
+	// TODO 파일사이즈 정책
 	@Column(name = "FILE_SIZE")
 	private Integer fileSize;
 
@@ -52,6 +48,16 @@ public class File extends BaseTimeEntity {
 	private String fileUploader;
 
 	// CreateDateTime -> Upload Time
+
+	@Builder
+	private File(Long id, Project project, TeamActivity teamActivity, String fileName, Integer fileSize, String fileUploader) {
+		this.id = id;
+		this.project = project;
+		this.teamActivity = teamActivity;
+		this.fileName = fileName;
+		this.fileSize = fileSize;
+		this.fileUploader = fileUploader;
+	}
 
 	public void update(File file) {
 		this.id = file.id;

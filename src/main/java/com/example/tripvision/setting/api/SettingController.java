@@ -64,18 +64,18 @@ public class SettingController {
 		return new ResponseEntity<>(SettingHelper.toDto(setting),HttpStatus.OK);
 	}
 
-	@PostMapping("/settings")
-	public ResponseEntity<SettingDto> saveProject(@RequestBody SettingDto settingDto) {
-		final Setting setting = settingSearchService.saveSetting(settingDto.toEntity());
-		return new ResponseEntity<>(SettingHelper.toDto(setting),HttpStatus.CREATED);
-	}
+//	@PostMapping("/settings")
+//	public ResponseEntity<SettingDto> saveProject(@RequestBody SettingDto settingDto) {
+//		final Setting setting = settingSearchService.saveSetting(settingDto.toEntity());
+//		return new ResponseEntity<>(SettingHelper.toDto(setting),HttpStatus.CREATED);
+//	}
 
-	@PutMapping("/settings")
-	public ResponseEntity<SettingDto> updateSetting(@RequestBody SettingDto settingDto) {
-		log.info(settingDto.toString());
-		final Setting setting = settingSearchService.updateSetting(settingDto.toEntity());
-		return new ResponseEntity<>(SettingHelper.toDto(setting),HttpStatus.CREATED);
-	}
+//	@PutMapping("/settings")
+//	public ResponseEntity<SettingDto> updateSetting(@RequestBody SettingDto settingDto) {
+//		log.info(settingDto.toString());
+//		final Setting setting = settingSearchService.updateSetting(settingDto.toEntity());
+//		return new ResponseEntity<>(SettingHelper.toDto(setting),HttpStatus.CREATED);
+//	}
 
 	@DeleteMapping("/settings/{id}")
 	public ResponseEntity deleteSetting(@Valid @PathVariable("id")@Min(1) Long id) {

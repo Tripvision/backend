@@ -86,7 +86,7 @@ class ProjectDtoTest {
 			.title("My Task Title")
 			.build();
 
-		SettingDto settingDto = SettingDto.builder()
+		SettingDto.SettingAndProjectDto settingDto = SettingDto.SettingAndProjectDto.builder()
 			.title("Project Setting")
 			.projectDto(projectDepDto)
 			.build();
@@ -104,12 +104,12 @@ class ProjectDtoTest {
 			.teamDto(teamDepDto)
 			.build();
 
-		FileDto fileDto = FileDto.builder()
+		FileDto.FileAndProjectDto fileDto = FileDto.FileAndProjectDto.builder()
 			.projectDto(projectDepDto)
 			.build();
 
 		BudgetDto budgetDto = BudgetDto.builder()
-			.projectDto(projectDepDto)
+//			.projectDto(projectDepDto)
 			.dueDate(LocalDateTime.now())
 			.build();
 

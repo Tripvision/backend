@@ -1,1 +1,1 @@
-{"id":null,"title":"Project Setting","logoUrl":null,"name":null,"type":null,"description":null,"dueDate":null,"notifierType":null,"status":null,"setting":null,"budget":null,"projectDto":{"id":1,"title":"My Project Title","dueDate":"2022-12-16","teamDto":null}}
+{"title":"Project Setting","projectDto":{"id":1,"title":"My Project Title","dueDate":"2022-12-18","teamDto":null}}

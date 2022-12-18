@@ -46,8 +46,6 @@ public class MemberTeam {
 		this.member = member;
 	}
 
-
-
 	public void setTeam(Team team) {
 		// if(team.getMemberList().contains(this)) {
 		// 	team.getMemberList().remove((this));
