@@ -8,4 +8,5 @@ import com.example.tripvision.budget.domain.Budget;
 public interface BudgetRepositoryCustom {
 
 	Page<Budget> search(Pageable pageable, String title);
+	Page<Budget> findAll(Pageable pageable);
 }
