@@ -55,7 +55,7 @@ public class Project extends BaseTimeEntity {
 	private LocalDate dueDate;
 
 	// Project Setting 1:1 단방향
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name = "setting_id")
 	private Setting setting;
 
@@ -66,11 +66,11 @@ public class Project extends BaseTimeEntity {
 
 	// Project Team(팀) 1:1 단방향
 	// 이상할 수도 있습니다
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id")
 	private Team team;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_id")
 	private Member member;
 
