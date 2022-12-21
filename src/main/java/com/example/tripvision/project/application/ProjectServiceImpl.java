@@ -14,7 +14,6 @@ import com.example.tripvision.file.domain.File;
 import com.example.tripvision.member.domain.Member;
 import com.example.tripvision.project.domain.Project;
 import com.example.tripvision.project.dao.ProjectRepository;
-import com.example.tripvision.setting.domain.Setting;
 import com.example.tripvision.task.dao.TaskRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -104,9 +103,5 @@ public class ProjectServiceImpl implements ProjectService {
 		return null;
 	}
 
-	@Override
-	public Setting projectSetting(Long projectId) {
-		return null;
-	}
 
 }

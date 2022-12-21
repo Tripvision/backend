@@ -1,18 +1,11 @@
 package com.example.tripvision.file.dto;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.NotNull;
 
 import com.example.tripvision.activity.TeamActivity;
-import com.example.tripvision.budget.domain.Budget;
-import com.example.tripvision.budget.dto.BudgetDto;
 import com.example.tripvision.file.domain.File;
 import com.example.tripvision.project.domain.Project;
 import com.example.tripvision.project.dto.ProjectDto;
-import com.example.tripvision.setting.domain.Setting;
-import com.example.tripvision.setting.dto.SettingDto;
-import com.example.tripvision.team.domain.Team;
 
 import lombok.*;
 

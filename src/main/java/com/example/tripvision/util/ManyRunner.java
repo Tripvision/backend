@@ -57,8 +57,6 @@ public class ManyRunner implements CommandLineRunner {
 					.fileUploader("da")
 					.build();
 
-
-				project.setBudget(budget);
 				projectRepository.save(project);
 				taskRepository.save(task);
 				fileRepository.save(file);
