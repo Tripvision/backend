@@ -1,9 +1,6 @@
 package com.example.tripvision.project.api;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -21,27 +18,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.budget.dto.BudgetDto;
 import com.example.tripvision.budget.mapper.BudgetHelper;
-import com.example.tripvision.file.domain.File;
-import com.example.tripvision.file.dto.FileDto;
-import com.example.tripvision.file.mapper.FileHelper;
 import com.example.tripvision.member.domain.Member;
 import com.example.tripvision.member.dto.MemberDto;
 import com.example.tripvision.member.mapper.MemberHelper;
 import com.example.tripvision.project.application.ProjectService;
 import com.example.tripvision.project.domain.Project;
 import com.example.tripvision.project.dto.ProjectDto;
-import com.example.tripvision.project.dto.SearchCriteria;
 import com.example.tripvision.project.dto.SearchRequest;
 import com.example.tripvision.project.mapper.ProjectHelper;
-import com.example.tripvision.setting.domain.Setting;
-import com.example.tripvision.setting.mapper.SettingHelper;
-import com.querydsl.core.types.dsl.BooleanExpression;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

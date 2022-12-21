@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.member.dto.MemberDto;
 import com.example.tripvision.notification.domain.Notification;
-import com.example.tripvision.setting.domain.Setting;
 import com.example.tripvision.team.domain.Team;
 import com.example.tripvision.team.dto.TeamDto;
 

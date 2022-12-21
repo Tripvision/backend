@@ -17,7 +17,6 @@ import com.example.tripvision.memberteam.MemberTeam;
 import com.example.tripvision.memberteam.MemberTeamDto;
 import com.example.tripvision.notification.dto.NotificationDto;
 import com.example.tripvision.project.dto.ProjectDto;
-import com.example.tripvision.setting.dto.SettingDto;
 import com.example.tripvision.task.dto.TaskDto;
 import com.example.tripvision.team.dto.TeamDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,10 +85,6 @@ class ProjectDtoTest {
 			.title("My Task Title")
 			.build();
 
-		SettingDto.SettingAndProjectDto settingDto = SettingDto.SettingAndProjectDto.builder()
-			.title("Project Setting")
-			.projectDto(projectDepDto)
-			.build();
 
 		NotificationDto memberNotificationDto = NotificationDto.builder()
 			.title("Bugs")
@@ -124,7 +119,6 @@ class ProjectDtoTest {
 		mapper.writeValue(Paths.get("./json/projectDto.json").toFile(), projectDto);
 		mapper.writeValue(Paths.get("./json/taskDto.json").toFile(), taskDto);
 		mapper.writeValue(Paths.get("./json/budgetDto.json").toFile(), budgetDto);
-		mapper.writeValue(Paths.get("./json/settingDto.json").toFile(), settingDto);
 		mapper.writeValue(Paths.get("./json/memberNotificationDto.json").toFile(), memberNotificationDto);
 		mapper.writeValue(Paths.get("./json/teamNotificationDto.json").toFile(), teamNotificationDto);
 		mapper.writeValue(Paths.get("./json/fileDto.json").toFile(), fileDto);

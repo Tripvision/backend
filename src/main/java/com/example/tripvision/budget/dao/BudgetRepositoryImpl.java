@@ -3,7 +3,6 @@ package com.example.tripvision.budget.dao;
 import static com.example.tripvision.budget.domain.QBudget.*;
 import static com.example.tripvision.project.domain.QProject.*;
 
-import com.example.tripvision.budget.domain.QBudget;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

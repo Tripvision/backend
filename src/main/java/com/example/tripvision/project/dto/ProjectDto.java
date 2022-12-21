@@ -10,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.project.domain.Project;
-import com.example.tripvision.setting.domain.Setting;
 import com.example.tripvision.team.domain.Team;
 import com.example.tripvision.team.dto.TeamDto;
 import com.fasterxml.jackson.annotation.JsonFormat;

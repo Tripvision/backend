@@ -1,3 +1,4 @@
+/*
 package com.example.tripvision.project.dao;
 
 import static com.example.tripvision.project.domain.QProject.*;
@@ -135,3 +136,4 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom {
 
 
 }
+*/

@@ -15,8 +15,7 @@ import com.example.tripvision.member.domain.Member;
 import com.example.tripvision.memberteam.MemberTeamRepository;
 import com.example.tripvision.project.dao.ProjectRepository;
 import com.example.tripvision.project.domain.Project;
-import com.example.tripvision.setting.dao.SettingRepository;
-import com.example.tripvision.setting.domain.Setting;
+
 import com.example.tripvision.task.dao.TaskRepository;
 import com.example.tripvision.team.dao.TeamRepository;
 import com.example.tripvision.team.domain.Team;
@@ -37,8 +36,7 @@ public class OneRunner implements CommandLineRunner {
 	MemberTeamRepository memberTeamRepository;
 	@Autowired
 	BudgetRepository budgetRepository;
-	@Autowired
-	SettingRepository settingRepository;
+
 	@Autowired
 	FileRepository fileRepository;
 	@Autowired
@@ -69,16 +67,9 @@ public class OneRunner implements CommandLineRunner {
 
 			Project project = Project.builder()
 				.title("My Project")
-				.member(member)
 				.dueDate(LocalDate.now())
 				.build();
 
-			Setting setting = Setting.builder()
-				.type("good")
-				.logoUrl("abc.url")
-				.description("switz")
-				.project(project)
-				.build();
 
 			Budget budget = Budget.builder()
 				.value(1000)
@@ -88,7 +79,6 @@ public class OneRunner implements CommandLineRunner {
 			memberRepository.save(member);
 			projectRepository.save(project);
 			budgetRepository.save(budget);
-			settingRepository.save(setting);
 			teamRepository.save(team);
 		}
 	}

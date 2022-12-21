@@ -1,41 +1,23 @@
 package com.example.tripvision.project.domain;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.file.domain.File;
-import com.example.tripvision.member.domain.Member;
-import com.example.tripvision.setting.domain.Setting;
 import com.example.tripvision.team.domain.Team;
 import com.example.tripvision.util.BaseTimeEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="project")
 public class Project extends BaseTimeEntity {
@@ -44,35 +26,38 @@ public class Project extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "project_id")
 	private Long id;
-
-	@Column(name = "title")
+	@Column(name = "project_title")
 	private String title;
 
-	@Column(name = "status")
-	private String status;
+	@Column(name = "project_name")
+	private String name;
+
+	@Column(name = "project_status")
+	private Boolean status;
 
 	@Column(name = "dueDate")
 	private LocalDate dueDate;
 
-	// Project Setting 1:1 단방향
-	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinColumn(name = "setting_id")
-	private Setting setting;
+	@Column(name = "project_logourl")
+	private String logoUrl;
 
-	// Project Budget(예산) 1:1 단방향
+	@Column(name = "project_type")
+	private String type;
+
+	@Column(name = "project_description")
+	private String description;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "project_notification_type")
+	private NotificationType notificationType;
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "budget_id")
 	private Budget budget;
 
-	// Project Team(팀) 1:1 단방향
-	// 이상할 수도 있습니다
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id")
 	private Team team;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_id")
-	private Member member;
 
 	@OneToMany(mappedBy = "project")
 	private List<File> fileList = new ArrayList<>();
@@ -83,11 +68,28 @@ public class Project extends BaseTimeEntity {
 		this.id = project.id;
 		this.dueDate = project.dueDate;
 		this.title = project.title;
-
+		this.name = project.name;
+		this.type = project.type;
+		this.description = project.description;
+		this.status = project.status;
+		this.notificationType = project.notificationType;
 		this.team = project.team;
 		this.budget = project.budget;
-		this.setting = project.setting;
-		this.member = project.member;
+	}
+
+	@Builder
+	public Project(Long id, String title, String name, Boolean status, LocalDate dueDate, String logoUrl, String type, String description, NotificationType notificationType, Budget budget, Team team) {
+		this.id = id;
+		this.title = title;
+		this.name = name;
+		this.status = status;
+		this.dueDate = dueDate;
+		this.logoUrl = logoUrl;
+		this.type = type;
+		this.description = description;
+		this.notificationType = notificationType;
+		this.budget = budget;
+		this.team = team;
 	}
 
 	// Budget delete에서 필요해 추가

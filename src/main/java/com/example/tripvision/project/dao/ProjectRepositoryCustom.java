@@ -8,7 +8,6 @@ import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.file.domain.File;
 import com.example.tripvision.member.domain.Member;
 import com.example.tripvision.project.dto.SearchCriteria;
-import com.example.tripvision.setting.domain.Setting;
 import com.example.tripvision.team.domain.Team;
 
 public interface ProjectRepositoryCustom {
@@ -43,11 +42,6 @@ public interface ProjectRepositoryCustom {
 	 * 현재 프로젝트의 Files 를 리턴합니다.
 	 */
 	List<File> projectFiles(Long projectId);
-
-	/**
-	 * 현재 프로젝트의 Setting 를 리턴합니다.
-	 */
-	Setting projectSetting(Long projectId);
 
 	/**
 	 * 프로젝트의 Budget 를 Bulk 연산합니다.(연관관계 삭제)

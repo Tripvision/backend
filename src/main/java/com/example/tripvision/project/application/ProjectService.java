@@ -10,7 +10,6 @@ import com.example.tripvision.file.domain.File;
 import com.example.tripvision.member.domain.Member;
 import com.example.tripvision.project.domain.Project;
 import com.example.tripvision.project.dto.SearchCriteria;
-import com.example.tripvision.setting.domain.Setting;
 
 public interface ProjectService {
 
@@ -56,8 +55,4 @@ public interface ProjectService {
 	 */
 	File projectFiles(Long projectId);
 
-	/**
-	 * 현재 프로젝트의 세팅들을 리턴합니다.
-	 */
-	Setting projectSetting(Long projectId);
 }
