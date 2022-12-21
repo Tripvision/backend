@@ -19,4 +19,10 @@ public class BudgetHelper {
 			.build();
 	}
 
+	public static BudgetDto.Abc toAbcDto(Budget budget){
+		return BudgetDto.Abc.builder()
+			.note(budget.getNotes())
+			.value(budget.getValue())
+			.build();
+	}
 }

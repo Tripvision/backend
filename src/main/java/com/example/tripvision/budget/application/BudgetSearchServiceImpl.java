@@ -1,8 +1,10 @@
 package com.example.tripvision.budget.application;
 
 
-import com.example.tripvision.project.dao.ProjectRepository;
 
+import com.example.tripvision.budget.dto.BudgetDto;
+import com.example.tripvision.project.dao.ProjectRepository;
+import com.example.tripvision.project.dao.ProjectRepositoryImpl;
 import com.example.tripvision.project.domain.Project;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.tripvision.budget.dao.BudgetRepository;
 import com.example.tripvision.budget.domain.Budget;
+import com.example.tripvision.file.domain.File;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,18 +41,15 @@ public class BudgetSearchServiceImpl implements BudgetSearchService {
 		budgetRepository.deleteAll();
 	}
 
+
 	/*
 	단일 조회 완
 	 */
 	@Transactional(readOnly = true)
-	public Budget findBudget(Long projectId, Long budgetId) {
-
-		Budget budget = budgetRepository.findById(budgetId).orElseThrow(() -> new RuntimeException("not found budget"));
-
-		checkRelationProject(projectId, budget);
-
-		return budget;
+	public Budget findBudget(Long id) {
+		return budgetRepository.findById(id).orElseThrow(() -> new RuntimeException("해당 프로젝트가 없습니다."));
 	}
+
 	/*
 	등록 완
 	 */
@@ -72,12 +72,8 @@ public class BudgetSearchServiceImpl implements BudgetSearchService {
 	 */
 	@Transactional
 	public Budget updateBudget(Long budgetId, Budget budget) {
-
 		Budget newBudget = budgetRepository.findById(budgetId)
-			.orElseThrow(() -> new RuntimeException("not found Budget"));
-
-		checkRelationProject(budget.getProject().getId(), newBudget);
-
+			.orElseThrow(() -> new RuntimeException("good"));
 		newBudget.update(budget);
 		return newBudget;
 	}
@@ -86,22 +82,13 @@ public class BudgetSearchServiceImpl implements BudgetSearchService {
 	삭제 완
 	 */
 	@Transactional
-	public void deleteBudget(Long projectId, Long budgetId) {
+	public void deleteBudget(Long budgetId) {
 
-		Budget budget = budgetRepository.findById(budgetId).orElseThrow(() -> new RuntimeException("budget not found"));
-
-		checkRelationProject(projectId, budget);
-
+		Budget budget = budgetRepository.findById(budgetId).orElseThrow(() -> new RuntimeException("exception ! "));
 		Project project = budget.getProject();
 		project.updateBudget(null);
 
 		budgetRepository.deleteById(budgetId);
 		// 단방향 이면, 따로 연관관계를 삭제해줍시다.
-	}
-
-	private void checkRelationProject(Long projectId, Budget budget) {
-		if (!budget.isMatchProjectId(projectId)){
-			throw new RuntimeException("project id not found");
-		}
 	}
 }

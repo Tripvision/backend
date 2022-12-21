@@ -82,42 +82,25 @@ public class BudgetDto {
 			.build();
 	}
 
-	@Getter @Setter @ToString
+	@Getter
 	@Builder
 	@AllArgsConstructor
-	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class BudgetRequestDto{
+	public static class Abc{
 
-		@Pattern(regexp = "^(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$")
-		@DateTimeFormat(pattern = "yyyy-MM-dd")
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-		private LocalDateTime dueDate;
-		@NotNull
-		private Usage usage;
-		@NotNull
-		private String notes;
-		@NotNull
+		private String note;
 		private Integer value;
-		@NotNull
-		private Boolean allow;
 
-		public Budget toEntity(Long projectId){
-			return Budget.builder()
-				.dueDate(dueDate)
-				.usage(usage)
-				.notes(notes)
-				.value(value)
-				.allow(allow)
-				.project(Project.builder().id(projectId).build())
-				.build();
-		}
+//		public Abc(Member member){
+//			this.note = member.getName();
+//
+//		}
 	}
 
 	@Getter
 	@Setter
 	public static class Bbb{
 
-//		private Abc abc;
+		private Abc abc;
 
 //		public Bbb(Budget budget){
 //			this.abc = new Abc(budget.getMember());

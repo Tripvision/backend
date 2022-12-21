@@ -78,17 +78,17 @@ public class Budget {
 	변경 해야하는 필드만 update 메소드로 빼서 메소드 나누기
 	 */
 	public void update(Budget budget) {
-		this.dueDate = budget.dueDate;
 		this.allow = budget.allow;
 		this.notes = budget.notes;
 		this.value = budget.value;
+//		this.notification = budget.notification;
 		this.usage = budget.usage;
 		this.project = budget.project;
 	}
 
 	//삭제
-	public boolean isMatchProjectId(Long projectId){
-		return this.project.getId() == projectId;
+	public void saveProject(Project project) {
+		this.project = project;
 	}
 
 }
