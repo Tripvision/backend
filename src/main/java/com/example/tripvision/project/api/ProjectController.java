@@ -35,6 +35,8 @@ import com.example.tripvision.project.mapper.ProjectHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import static com.example.tripvision.project.dto.ProjectDto.*;
+
 @Validated
 @RequiredArgsConstructor
 @RestController
@@ -139,22 +141,24 @@ public class ProjectController {
 		return new ResponseEntity<>(ProjectHelper.toDto(project),HttpStatus.OK);
 	}
 
-	@PostMapping("/projects")
-	public ResponseEntity<ProjectDto> saveProject(@RequestBody ProjectDto projectDto) {
-		final Project project = projectSearchService.saveProject(projectDto.toEntity());
+	@PostMapping("/teams/{teamId}/projects")
+	public ResponseEntity<ProjectDto> saveProject(@Valid @PathVariable @Min(1) Long teamId,
+												  @RequestBody ProjectRequestDto projectDto) {
+		final Project project = projectSearchService.saveProject(projectDto.toEntity(teamId));
 		return new ResponseEntity<>(ProjectHelper.toDto(project),HttpStatus.CREATED);
 	}
 
-	@PutMapping("/projects")
-	public ResponseEntity<ProjectDto> updateProject(@RequestBody ProjectDto projectDto) {
+	@PutMapping("/teams/{teamId}/projects")
+	public ResponseEntity<ProjectDto> updateProject(@Valid @PathVariable @Min(1) Long teamId,
+													@RequestBody ProjectDto projectDto) {
 		log.info(projectDto.toString());
 		final Project project = projectSearchService.updateProject(projectDto.toEntity());
 		return new ResponseEntity<>(ProjectHelper.toDto(project),HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/projects/{id}")
-	public ResponseEntity deleteProject(@Valid @PathVariable("id")@Min(1) Long id) {
-		projectSearchService.deleteProject(id);
+	@DeleteMapping("/teams/{teamId}/projects")
+	public ResponseEntity deleteProject(@Valid @PathVariable @Min(1) Long teamId) {
+		projectSearchService.deleteProject(teamId);
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 }

@@ -51,8 +51,7 @@ public class Project extends BaseTimeEntity {
 	@Column(name = "project_notification_type")
 	private NotificationType notificationType;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "budget_id")
+	@OneToOne(mappedBy = "project")
 	private Budget budget;
 
 	@OneToOne(fetch = FetchType.LAZY)

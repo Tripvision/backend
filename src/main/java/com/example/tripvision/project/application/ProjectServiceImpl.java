@@ -2,8 +2,11 @@ package com.example.tripvision.project.application;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.example.tripvision.team.dao.TeamRepository;
+import com.example.tripvision.team.domain.Team;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	private final ProjectRepository projectRepository;
 	private final TaskRepository taskRepository;
+	private final TeamRepository teamRepository;
 
 
 	@Transactional(readOnly = true)
@@ -45,6 +49,11 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Transactional
 	public Project saveProject(Project project) {
+		Team team = teamRepository.findById(project.getTeam().getId())
+			.orElseThrow(() -> new RuntimeException("not found team"));
+
+		if (team.hasProject()) throw new RuntimeException("해당 팀에 프로젝트 이미 있습니다.");
+
 		return projectRepository.save(project);
 	}
 
@@ -68,34 +77,39 @@ public class ProjectServiceImpl implements ProjectService {
 	@Transactional(readOnly = true)
 	@Override
 	public Long currentProject(Long memberId) {
-		Long count = projectRepository.currentProject(memberId);
-		return count;
+//		Long count = projectRepository.currentProject(memberId);
+//		return count;
+		return 1L;
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public Long projectFinance(Long projectId) {
-		Long projectFinance = projectRepository.projectFinance(projectId);
-		return projectFinance;
+//		Long projectFinance = projectRepository.projectFinance(projectId);
+//		return projectFinance;
+		return 1L;
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public Long totalMemberFinance(Long memberId) {
-		Long totalMember = projectRepository.totalMemberFinance(memberId);
-		return totalMember;
+//		Long totalMember = projectRepository.totalMemberFinance(memberId);
+//		return totalMember;
+		return 1L;
 	}
 
 	@Override
 	public List<Member> findProjectMembers(Long teamId,Long memberId) {
-		List<Member> memberList = projectRepository.teamMembers(teamId,memberId);
-		return memberList;
+//		List<Member> memberList = projectRepository.teamMembers(teamId,memberId);
+//		return memberList;
+		return new ArrayList<>();
 	}
 
 	@Override
 	public Budget projectBudget(Long projectId) {
-		Budget budget = projectRepository.projectBudget(projectId);
-		return budget;
+//		Budget budget = projectRepository.projectBudget(projectId);
+//		return budget;
+		return Budget.builder().build();
 	}
 
 	@Override

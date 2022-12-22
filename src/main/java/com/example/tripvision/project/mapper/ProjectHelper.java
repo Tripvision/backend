@@ -13,6 +13,11 @@ public class ProjectHelper {
 			.id(project.getId())
 			.title(project.getTitle())
 			.dueDate(project.getDueDate())
+			.name(project.getName())
+			.status(project.getStatus())
+			.description(project.getDescription())
+			.notificationType(project.getNotificationType())
+			.teamId(project.getTeam().getId())
 			.build();
 	}
 }

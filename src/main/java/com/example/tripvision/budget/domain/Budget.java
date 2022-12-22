@@ -54,7 +54,8 @@ public class Budget {
 	@Column(name = "BUDGET_ALLOW")
 	private Boolean allow;
 
-	@OneToOne(mappedBy = "budget")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="project_id")
 	private Project project;
 
 	//연관관계 수정

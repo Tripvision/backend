@@ -13,14 +13,14 @@ import com.example.tripvision.project.dto.SearchCriteria;
 
 public interface ProjectService {
 
-	public Page<Project> findAll(Pageable pageable);
+	Page<Project> findAll(Pageable pageable);
 
-	public void deleteAll();
-	public Project findProject(Long id);
+	void deleteAll();
+	Project findProject(Long id);
 
-	public Project saveProject(Project project);
-	public Project updateProject(Project project);
-	public void deleteProject(Long projectId);
+	Project saveProject(Project project);
+	Project updateProject(Project project);
+	void deleteProject(Long projectId);
 
 	/**
 	 * 완료된 프로젝트를 제외한 나머지 프로젝트를 리턴합니다.

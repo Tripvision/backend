@@ -4,16 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.example.tripvision.budget.domain.Budget;
 import com.example.tripvision.member.domain.Member;
 import com.example.tripvision.memberteam.MemberTeam;
+import com.example.tripvision.project.domain.Project;
 import com.example.tripvision.util.BaseTimeEntity;
 
 import lombok.AllArgsConstructor;
@@ -40,13 +36,16 @@ public class Team extends BaseTimeEntity {
 	@Column(name = "title")
 	private String title;
 
-
+	@OneToOne(mappedBy = "team")
+	private Project project;
 
 	public void update(Team team) {
 		this.id = team.id;
 	}
 
-
+	public boolean hasProject(){
+		return this.project != null;
+	}
 
 
 }

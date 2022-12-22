@@ -40,7 +40,7 @@ class ProjectDtoTest {
 			.build();
 
 		ProjectDto projectDepDto = ProjectDto.builder()
-			.id(1L)
+//			.id(1L)
 			.title("My Project Title")
 			.dueDate(LocalDate.now())
 			.build();
@@ -62,7 +62,7 @@ class ProjectDtoTest {
 
 		ProjectDto projectDto = ProjectDto.builder()
 			.title("My Project Title")
-			.teamDto(teamDepDto)
+//			.teamDto(teamDepDto)
 			.dueDate(LocalDate.now())
 			.build();
 
