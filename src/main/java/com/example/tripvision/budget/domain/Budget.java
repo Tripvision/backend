@@ -92,4 +92,7 @@ public class Budget {
 		return this.project.getId() == projectId;
 	}
 
+	public void deleteProject(){
+		this.project = null;
+	}
 }

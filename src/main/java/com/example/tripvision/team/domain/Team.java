@@ -48,4 +48,7 @@ public class Team extends BaseTimeEntity {
 	}
 
 
+	public void deleteProject() {
+		this.project = null;
+	}
 }

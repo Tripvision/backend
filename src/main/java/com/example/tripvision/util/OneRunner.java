@@ -68,6 +68,7 @@ public class OneRunner implements CommandLineRunner {
 			Project project = Project.builder()
 				.title("My Project")
 				.dueDate(LocalDate.now())
+				.team(team)
 				.build();
 
 
@@ -76,10 +77,11 @@ public class OneRunner implements CommandLineRunner {
 				.notes("asdsd")
 				.project(project)
 				.build();
+			teamRepository.save(team);
 			memberRepository.save(member);
 			projectRepository.save(project);
 			budgetRepository.save(budget);
-			teamRepository.save(team);
+
 		}
 	}
 }

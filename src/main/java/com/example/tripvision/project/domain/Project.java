@@ -51,7 +51,7 @@ public class Project extends BaseTimeEntity {
 	@Column(name = "project_notification_type")
 	private NotificationType notificationType;
 
-	@OneToOne(mappedBy = "project")
+	@OneToOne(mappedBy = "project", fetch = FetchType.LAZY)
 	private Budget budget;
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -64,16 +64,14 @@ public class Project extends BaseTimeEntity {
 
 	// 연관관계 편의 메소드와 이유
 	public void update(Project project) {
-		this.id = project.id;
 		this.dueDate = project.dueDate;
 		this.title = project.title;
 		this.name = project.name;
 		this.type = project.type;
+		this.logoUrl = project.logoUrl;
 		this.description = project.description;
 		this.status = project.status;
 		this.notificationType = project.notificationType;
-		this.team = project.team;
-		this.budget = project.budget;
 	}
 
 	@Builder
@@ -100,5 +98,16 @@ public class Project extends BaseTimeEntity {
 	public boolean hasBudget(){
 		if (this.budget!=null) return true;
 		return false;
+	}
+
+	public boolean isMatchTeamId(Long teamId){
+		return this.team.getId() == teamId;
+	}
+
+	public void deleteProject(Team team){
+		team.deleteProject();
+		this.team = null;
+		this.budget = null;
+
 	}
 }

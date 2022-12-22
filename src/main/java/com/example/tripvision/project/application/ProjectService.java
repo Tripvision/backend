@@ -20,7 +20,7 @@ public interface ProjectService {
 
 	Project saveProject(Project project);
 	Project updateProject(Project project);
-	void deleteProject(Long projectId);
+	void deleteProject(Long teamId, Long projectId);
 
 	/**
 	 * 완료된 프로젝트를 제외한 나머지 프로젝트를 리턴합니다.

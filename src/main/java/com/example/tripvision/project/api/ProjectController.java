@@ -135,9 +135,9 @@ public class ProjectController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/projects/{id}")
-	public ResponseEntity<ProjectDto> findProject(@Valid @PathVariable("id") @Min(1) Long projectId) {
-		final Project project = projectSearchService.findProject(projectId);
+	@GetMapping("/teams/{teamId}/projects")
+	public ResponseEntity<ProjectDto> findProject(@Valid @PathVariable @Min(1) Long teamId) {
+		final Project project = projectSearchService.findProject(teamId);
 		return new ResponseEntity<>(ProjectHelper.toDto(project),HttpStatus.OK);
 	}
 
@@ -150,15 +150,16 @@ public class ProjectController {
 
 	@PutMapping("/teams/{teamId}/projects")
 	public ResponseEntity<ProjectDto> updateProject(@Valid @PathVariable @Min(1) Long teamId,
-													@RequestBody ProjectDto projectDto) {
+													@RequestBody ProjectRequestDto projectDto) {
 		log.info(projectDto.toString());
-		final Project project = projectSearchService.updateProject(projectDto.toEntity());
+		final Project project = projectSearchService.updateProject(projectDto.toEntity(teamId));
 		return new ResponseEntity<>(ProjectHelper.toDto(project),HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/teams/{teamId}/projects")
-	public ResponseEntity deleteProject(@Valid @PathVariable @Min(1) Long teamId) {
-		projectSearchService.deleteProject(teamId);
+	@DeleteMapping("/teams/{teamId}/projects/{projectId}")
+	public ResponseEntity deleteProject(@Valid @PathVariable @Min(1) Long teamId,
+										@Valid @PathVariable @Min(1) Long projectId) {
+		projectSearchService.deleteProject(teamId, projectId);
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 }
