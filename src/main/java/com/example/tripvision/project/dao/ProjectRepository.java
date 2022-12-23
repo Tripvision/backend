@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 // https://www.inflearn.com/questions/227764/extends-jparepository-lt-gt-vs-repository-%EC%A7%88%EB%AC%B8
-public interface ProjectRepository extends JpaRepository<Project,Long>{
+public interface ProjectRepository extends JpaRepository<Project,Long>, ProjectRepositoryCustom{
 
 	@Query("select p from Project p join fetch p.team join fetch p.budget where p.id = ?1")
 	Optional<Project> findByIdLazy(Long projectId);
